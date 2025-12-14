@@ -23,3 +23,5 @@ def build_network(opt):
     logger = get_root_logger()
     logger.info(f'Network [{net.__class__.__name__}] is created.')
     return net
+
+from .bsrn_arch import *
