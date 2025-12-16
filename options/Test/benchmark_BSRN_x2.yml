@@ -1,4 +1,4 @@
-name: test_BSRN_x2_C64B8_L1_1000k
+name: test_BSRN_x2_C64B10_L1_500k
 suffix: ~  # add suffix to saved images
 model_type: SRModel
 scale: 2
@@ -27,6 +27,16 @@ datasets:
     io_backend:
       type: disk
 
+  test_3:  # the 2st test dataset
+    task: SR
+    name: Urban100
+    type: PairedImageDataset
+    dataroot_gt: datasets/benchmark/Urban100/HR
+    dataroot_lq: datasets/benchmark/Urban100/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    io_backend:
+      type: disk
+
 
 
 # network structures
@@ -34,7 +44,7 @@ network_g:
   type: BSRN
   num_in_ch: 3
   num_feat: 64
-  num_block: 8
+  num_block: 10
   num_out_ch: 3
   upscale: 2
   # change_c: 15
