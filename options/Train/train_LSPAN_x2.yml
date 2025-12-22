@@ -1,5 +1,5 @@
 # general settings
-name: test_BSRN_x2_C64B10_L1_PixelAttention_500k
+name: test_LSPAN_x2_C64B10_L1_PixelAttention_500k
 model_type: SRModel
 scale: 2
 num_gpu: auto  # set num_gpu: 0 for cpu mode
@@ -23,9 +23,9 @@ datasets:
 
     # data loader
     use_shuffle: True
-    num_worker_per_gpu: 16
-    batch_size_per_gpu: 64
-    dataset_enlarge_ratio: 100
+    num_worker_per_gpu: 4
+    batch_size_per_gpu: 8
+    dataset_enlarge_ratio: 1
     prefetch_mode: cuda
     pin_memory: True 
 
@@ -42,7 +42,7 @@ datasets:
 
 # network structures
 network_g:
-  type: BSRN
+  type: LSPAN
   num_in_ch: 3
   num_feat: 64
   num_block: 10
@@ -55,7 +55,7 @@ network_g:
 path:
   pretrain_network_g: ~
   strict_load_g: true
-  resume_state: 
+  resume_state: experiments/test_LSPAN_x2_C64B10_L1_PixelAttention_500k/training_states/375000.state
 
 # training settings
 train:
@@ -67,11 +67,11 @@ train:
 
   scheduler:
     type: CosineAnnealingRestartLR
-    periods: [125000, 125000, 125000, 125000]
+    periods: [250000, 250000, 250000, 250000]
     restart_weights: [1, 1, 1, 1]
     eta_min: !!float 1e-7
 
-  total_iter: 500000
+  total_iter: 1000000
 
   warmup_iter: 2000
   warmup_method: linear 

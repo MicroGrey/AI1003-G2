@@ -1,4 +1,4 @@
-name: test_BSRN_x2_C64B10_L1_500k
+name: test_LSPAN_x2_C64B10_L1_500k_best
 suffix: ~  # add suffix to saved images
 model_type: SRModel
 scale: 2
@@ -41,7 +41,7 @@ datasets:
 
 # network structures
 network_g:
-  type: BSRN
+  type: LSPAN
   num_in_ch: 3
   num_feat: 64
   num_block: 10
@@ -52,7 +52,7 @@ network_g:
 
 # path
 path:
-  pretrain_network_g: experiments/pretrained_models/net_g_BSRN_x2.pth
+  pretrain_network_g: /home/g2/G2-wpq-dev/AI1003-G2/experiments/test_LSPAN_x2_C64B10_L1_PixelAttention_500k/models/net_g_375000.pth
   strict_load_g: true
 
 # validation settings

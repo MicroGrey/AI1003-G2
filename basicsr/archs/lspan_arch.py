@@ -1,10 +1,3 @@
-'''
-This repository is used to implement all upsamplers(only x4) and tools for Efficient SR
-@author
-    LI Zehyuan from SIAT
-    LIU yingqi from SIAT
-'''
-
 from functools import partial
 import torch
 import torch.nn as nn
@@ -300,10 +293,10 @@ def make_layer(block, n_layers):
 
 
 @ARCH_REGISTRY.register()
-class BSRN(nn.Module):
+class LSPAN(nn.Module):
     def __init__(self, num_in_ch=3, num_feat=64, num_block=8, num_out_ch=3, upscale=4,
                  conv='BSConvU', upsampler='pixelshuffledirect', p=0.25):
-        super(BSRN, self).__init__()
+        super(LSPAN, self).__init__()
         kwargs = {'padding': 1}
         if conv == 'BSConvS':
             kwargs = {'p': p}
